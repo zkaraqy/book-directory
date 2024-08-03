@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= nameCollection %></title>
+  <link rel="stylesheet" href="/css/src/output.css" type="text/css">
+</head>
+
+<body class="bg-dark-theme-surface">
+  <div class="fixed top-0 w-screen">
+    <%- include('../partials/nav.ejs') %>
+  </div>
+  <main class="container mt-20 text-white mx-auto">
+    <h1 class="text-center text-2xl font-mono"><%= username %> / <%= nameCollection %></h1>
+    <% if (books.length < 1) { %>
+    <h1 class="text-xl text-center mt-10">You dont have any book in this collection</h1>
+    <% } else { %>
+      <section class="w-[70%] mx-auto">
+        <%- include('./collection.ejs') %>
+      </section>
+    <% } %>
+  </main>
+  <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

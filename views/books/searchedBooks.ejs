@@ -1,0 +1,46 @@
+<div class="container relative flex flex-row flex-wrap justify-evenly items-center mx-8">
+  <% if (books) { %>
+  <% books.forEach(book => { %>
+  <% try { %>
+  <% if (!book.volumeInfo.imageLinks.thumbnail) { %>
+  <% throw new Error("No thumbnail") %>
+  <% } %>
+  <% } catch (error) { %>
+  <% return; %>
+  <% } %>
+  <div class="w-[177px] min-h-[260px] mt-5 mx-3 text-dark-theme-secondary font-arial text-sm flex flex-col justify-center gap-2 rounded shadow-md shadow-slate-800 border border-slate-800/45 overflow-hidden p-2">
+    <div class="flex justify-start items-center gap-1">
+      <img src="<%= book.volumeInfo.imageLinks.thumbnail  %>" alt="cover">
+
+      <div class="flex flex-col justify-center items-center gap-2">
+        <button value="<%= book.id %>" type="submit" class="bttnAddBookToPersonalCollection w-8 h-8 rounded-full border border-dark-theme-primary text-dark-theme-primary hover:border-transparent hover:text-dark-theme-on-background hover:bg-dark-theme-primary transition duration-150 ease-in-out"><i class="fa-solid fa-bookmark" title="Add to personal collection"></i></button>
+        <button value="<%= book.id %>" type="submit" class="bttnAddBookToFavorites w-8 h-8 rounded-full border border-yellow-200 text-yellow-300 hover:border-transparent hover:text-dark-theme-on-background hover:bg-yellow-300 transition duration-150 ease-in-out" title="Add to favorites"><i class="fa-solid fa-star"></i></button>
+        <button value="<%= book.id %>" type="submit" class="bttnDetailBook w-8 h-8 rounded-full border border-slate-400 text-slate-400 hover:border-transparent hover:text-dark-theme-on-background hover:bg-slate-400 transition duration-150 ease-in-out" title="Details"><i class="fa-solid fa-info"></i></button>
+      </div>
+    </div>
+    <div class="w-full text-wrap">
+      <% try {%>
+      <h1 class="font-semibold" title="<%= book.volumeInfo.title %>"><%= book.volumeInfo.title.substring(0, 40) %><%= (book.volumeInfo.title.length > 40) ? "..." : "" %></h1>
+      <% if (book.volumeInfo.authors.length > 1) { %>
+      <p class="text-xs text-white/50"><%=(book.volumeInfo.publisher) ? ("Publisher: " + book.volumeInfo.publisher) : ""%> </p>
+      <% } else { %>
+      <p class="text-xs text-white/50"><%= book.volumeInfo.authors[0].substring(0,40) %><%= (book.volumeInfo.authors[0].length > 40) ? "..." : "" %></p>
+      <% } %>
+      <%  } catch (error) {%>
+      <p class="text-xs text-white/50"><%=(book.volumeInfo.publisher) ? ("Publisher: " + book.volumeInfo.publisher) : ""%> </p>
+      <% } %>
+    </div>
+  </div>
+  <% }) %>
+  <% } %>
+  <div id="toastBookError" class="fixed -bottom-full left-4 px-5 py-4 text-dark-theme-surface transition shadow-md bg-dark-theme-error/70 shadow-dark-theme-error backdrop-blur-md rounded-md flex gap-2 items-center">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <p id="pMessageError" class="font-semibold"></p>
+  </div>
+  <div id="toastBookSuccess" class="fixed -bottom-full left-4 px-5 py-4 text-dark-theme-on-background transition shadow-md bg-dark-theme-primary/60 backdrop-blur-md shadow-dark-theme-primary rounded-md flex gap-2 items-center">
+    <i class="fa-regular fa-circle-check"></i>
+    <p id="pMessageSuccess" class="font-semibold"></p>
+  </div>
+  <div class="absolute animate-shows bottom-4"></div>
+  <div class="absolute animate-shows -bottom-full"></div>
+</div>

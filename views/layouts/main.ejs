@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Directory App</title>
+  <link rel="stylesheet" href="/css/src/output.css" type="text/css">
+</head>
+
+<body class="bg-dark-theme-background font-arial">
+  <div class="fixed w-screen top-0 z-10">
+    <%- include('../partials/nav.ejs') %>
+  </div>
+  <main class="container flex flex-col justify-start items-center text-slate-300 h-screen mx-auto mt-28">
+    <header class="flex flex-col justify-center items-center w-full">
+      <h1 class="text-4xl font-bold mb-4">Find Your BOOKS <i class="fa-solid fa-book text-dark-theme-primary"></i> !</h1>
+      <form action="/searchBooks" method="get" autocomplete="off" class="w-full flex flex-row justify-center items-center gap-3">
+        <input type="text" name="q" id="searchBooksInput" class="bg-dark-theme-secondary text-md text-dark-theme-on-primary font-bold p-2 w-2/5 rounded-full ring-1 ring-transparent focus:outline-none focus:ring-dark-theme-primary text-center" />
+        <button type="submit" class="flex justify-center items-center transition duration-150 ease-in-out rounded-full border border-slate-400 hover:border-dark-theme-primary hover:bg-dark-theme-primary hover:text-dark-theme-on-background p-2 font-bold"><i class="fa-solid fa-magnifying-glass text-center p-1 text-lg"></i></button>
+      </form>
+    </header>
+    <section class="mt-8 flex justify-center">
+      <%- include('../books/searchedBooks.ejs') %>
+    </section>
+  </main>
+  <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+  <!-- <script src="/js/addBookBttn.js"></script> -->
+</body>
+
+</html>

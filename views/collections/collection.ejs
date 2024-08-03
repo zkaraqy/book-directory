@@ -1,0 +1,23 @@
+<table class="w-full mx-auto mt-10 text-center text-white table-fixed">
+  <thead>
+    <th>Cover</th>
+    <th>Title</th>
+    <th>Date Modified</th>
+    <th>Read Progress</th>
+    <th>Action</th>
+  </thead>
+  <% books.forEach(book => { %>
+  <tr>
+    <td class="p-1 flex justify-center items-center border border-slate-500"><img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="Book cover"></td>
+    <td class="border border-slate-500"><p><%= book.volumeInfo.title %></p></td>
+    <td class="border border-slate-500"><p><%= book.dateModified %></p></td>
+    <td class="border border-slate-500"><p><%= book.progress %></p></td>
+    <td class="border border-slate-500">
+      <form action="/<%= username %>/<%= nameCollection %>/delete/<%= book.id %>" method="post">
+        <input type="text" name="_method" value="DELETE" hidden>
+        <button type="submit" class="px-3 py-2 rounded-full border border-slate-400 shadow-sm shadow-slate-400 hover:border-red-500 hover:bg-red-500 hover:shadow-red-500 transition duration-200 ease-in-out">Remove</button>
+      </form>
+    </td>
+  </tr>
+  <% }) %>
+</table>
