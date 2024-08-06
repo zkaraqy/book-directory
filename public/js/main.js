@@ -1,3 +1,43 @@
+function generateRandomId() {
+  return "id-" + Date.now() + "-" + Math.floor(Math.random() * 10000);
+}
+
+function getUserFromSessionStorage() {
+  return JSON.parse(sessionStorage.getItem("user"));
+}
+
+function createUserInSessionStorage(name, id) {
+  return sessionStorage.setItem("user", JSON.stringify({ username: name, id }));
+}
+
+function getOrCreateUserInSessionStorage(name) {
+  return getUserFromSessionStorage()
+    ? getUserFromSessionStorage()
+    : createUserInSessionStorage(name);
+}
+
+async function postUser(userData) {
+  const res = await fetch(`/users/add/${userData.username}`, {
+    method: "post",
+    body: { id: userData.id },
+  });
+  console.log("Posted user:", res);
+}
+// const {
+//   generateRandomId,
+//   createUserInSessionStorage,
+//   getUserFromSessionStorage,
+//   postUser,
+// } = require("./user.js");
+
+window.onload = async () => {
+  const userData = getUserFromSessionStorage();
+  if (!userData) {
+    createUserInSessionStorage(null);
+  }
+  console.log(userData);
+};
+
 const profileButton = document.getElementById("profileButton");
 const profileAction = document.getElementById("profileAction");
 const usernameProfile = document.getElementById("usernameProfile");
@@ -64,8 +104,8 @@ for (let i = 0; i < bttnAddBookToPersonalCollection.length; i++) {
 bttnAddBookToFavorites.forEach(function (bttn) {
   bttn.addEventListener("click", async function () {
     const id = bttn.value;
-    const fetched = await fetch(`/book/addToFavorites/${id}`).then(
-      (data) => data.json()
+    const fetched = await fetch(`/book/addToFavorites/${id}`).then((data) =>
+      data.json()
     );
     // console.log(fetched);
     const { status, msg } = fetched[0];
@@ -85,3 +125,25 @@ bttnAddBookToFavorites.forEach(function (bttn) {
     }
   });
 });
+
+const signUpForm = document.getElementById("signUpForm");
+
+if (signUpForm) {
+  signUpForm.addEventListener("submit", async function () {
+    const username = document.querySelector("#signUpForm #username").value;
+    const id = generateRandomId();
+    createUserInSessionStorage(username);
+    await postUser({ username });
+  });
+}
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+  loginForm.addEventListener("submit", async function () {
+    const username = document.querySelector("#loginForm #username").value;
+    const id = generateRandomId();
+    createUserInSessionStorage(username);
+    await postUser({ username });
+  });
+}

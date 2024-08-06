@@ -17,6 +17,30 @@ async function run() {
   }
 }
 
+async function addUserLoginCache({ username }) {
+  try {
+    await client
+      .db("user")
+      .collection("users-login")
+      .insertOne({ username, date: new Date().toUTCString() });
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+}
+
+async function getUserLoginCache({ username }) {
+  try {
+    const user = await client
+      .db("user")
+      .collection("users-login")
+      .findOne({ username });
+    return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 async function addUser(data) {
   try {
     await client
@@ -129,4 +153,6 @@ module.exports = {
   addBookToPersonalCollections,
   addBookToFavorites,
   deleteBookFromCollection,
+  addUserLoginCache,
+  getUserLoginCache,
 };
