@@ -5,13 +5,13 @@ module.exports = {
     extend: {
       keyframes: {
         shows: {
-          '0%, 100%': { bottom: "-100%" },
-          '10%': { bottom: '16px' },
-          '90%': { bottom: '16px' },
-        }
+          "0%, 100%": { bottom: "-100%" },
+          "10%": { bottom: "16px" },
+          "90%": { bottom: "16px" },
+        },
       },
       animation: {
-        shows: "shows 5s ease-in-out 1"
+        shows: "shows 5s ease-in-out 1",
       },
       fontFamily: {
         arial: ["Arial", "sans-serif"],
@@ -43,5 +43,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

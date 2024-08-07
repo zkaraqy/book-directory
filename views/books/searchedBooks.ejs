@@ -1,4 +1,12 @@
-<div class="container relative flex flex-row flex-wrap justify-evenly items-center mx-8">
+<div class="bg-dark-theme-background container relative min-[550px]:flex min-[550px]:flex-row min-[550px]:flex-wrap min-[550px]:justify-evenly min-[550px]:items-center mx-2 min-[550px]:mx-8 grid grid-cols-2">
+  <% if (!books) { %>
+  <div role="alert" class="alert alert-error">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span>Error! Quota exceeded: rateLimitExceeded</span>
+  </div>
+  <% } %>
   <% if (books) { %>
   <% books.forEach(book => { %>
   <% try { %>
@@ -8,11 +16,11 @@
   <% } catch (error) { %>
   <% return; %>
   <% } %>
-  <div id="book-wrapper" class="w-[177px] min-h-[260px] mt-5 mx-3 text-dark-theme-secondary font-arial text-sm flex flex-col justify-center gap-2 rounded shadow-md shadow-slate-800 border border-slate-800/45 overflow-hidden p-2">
-    <div class="flex justify-start items-center gap-1">
+  <div id="book-wrapper" class="max-w-[177px] min-h-[260px] mt-5 mx-1 min-[550px]:mx-3 text-dark-theme-secondary font-arial text-sm flex flex-col justify-center gap-2 rounded shadow-md shadow-slate-800 border border-slate-800/45 overflow-hidden p-2">
+    <div class="flex justify-start items-center gap-1 min-[550px]:flex-row flex-col">
       <img src="<%= book.volumeInfo.imageLinks.thumbnail  %>" alt="cover">
 
-      <div class="flex flex-col justify-center items-center gap-2">
+      <div class="flex flex-row min-[550px]:flex-col justify-center items-center gap-2">
         <button value="<%= book.id %>" type="submit" class="bttnAddBookToPersonalCollection w-8 h-8 rounded-full border border-dark-theme-primary text-dark-theme-primary hover:border-transparent hover:text-dark-theme-on-background hover:bg-dark-theme-primary transition duration-150 ease-in-out"><i class="fa-solid fa-bookmark" title="Add to personal collection"></i></button>
         <button value="<%= book.id %>" type="submit" class="bttnAddBookToFavorites w-8 h-8 rounded-full border border-yellow-200 text-yellow-300 hover:border-transparent hover:text-dark-theme-on-background hover:bg-yellow-300 transition duration-150 ease-in-out" title="Add to favorites"><i class="fa-solid fa-star"></i></button>
         <button value="<%= book.id %>" type="submit" class="bttnDetailBook w-8 h-8 rounded-full border border-slate-400 text-slate-400 hover:border-transparent hover:text-dark-theme-on-background hover:bg-slate-400 transition duration-150 ease-in-out" title="Details"><i class="fa-solid fa-info"></i></button>

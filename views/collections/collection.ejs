@@ -1,23 +1,23 @@
-<table class="w-full mx-auto mt-10 text-center text-white table-fixed">
-  <thead>
-    <th>Cover</th>
-    <th>Title</th>
-    <th>Date Modified</th>
-    <th>Read Progress</th>
-    <th>Action</th>
-  </thead>
+<h1 class="text-center mb-4">Total books: <%= books.length %></h1>
+<div class="w-full mx-auto flex flex-col md:grid md:grid-cols-2 md:place-content-stretch text-white gap-3">
   <% books.forEach(book => { %>
-  <tr>
-    <td class="p-1 flex justify-center items-center border border-slate-500"><img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="Book cover"></td>
-    <td class="border border-slate-500"><p><%= book.volumeInfo.title %></p></td>
-    <td class="border border-slate-500"><p><%= book.dateModified %></p></td>
-    <td class="border border-slate-500"><p><%= book.progress %></p></td>
-    <td class="border border-slate-500">
-      <form action="/<%= username %>/<%= nameCollection %>/delete/<%= book.id %>" method="post">
-        <input type="text" name="_method" value="DELETE" hidden>
-        <button type="submit" class="px-3 py-2 rounded-full border border-slate-400 shadow-sm shadow-slate-400 hover:border-red-500 hover:bg-red-500 hover:shadow-red-500 transition duration-200 ease-in-out">Remove</button>
-      </form>
-    </td>
-  </tr>
+  <div class="card card-side bg-base-100 shadow-xl">
+    <figure>
+      <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="w-[140px] h-auto" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title text-wrap"><%= book.volumeInfo.title %></h2>
+      <p>Date added: <%= book.dateModified %></p>
+      <div class="flex gap-2">
+        <form action="/detail/<%= book.id %>" method="get">
+          <button type="submit" class="btn btn-outline btn-info">Detail</button>
+        </form>
+        <form action="/<%= username %>/<%= nameCollection %>/delete/<%= book.id %>" method="post">
+          <input type="text" name="_method" value="DELETE" hidden>
+          <button type="submit" class="btn btn-success">Done reading</button>
+        </form>
+      </div>
+    </div>
+  </div>
   <% }) %>
-</table>
+</div>

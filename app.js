@@ -23,7 +23,6 @@ const {
   updateProgressFavorites,
   getItemsFromCollection,
 } = require("./utils/book");
-// const USER = require("");
 
 require("./utils/invokeDB");
 
@@ -154,6 +153,20 @@ app.get("/logOut", (req, res) => {
 app.get("/searchBooks", async (req, res) => {
   const { q } = req.query;
   const { items } = await getBooks(q, 0, 40);
+  if (!items) {
+    try {
+      const dataUser =
+        (await getUserLoginCache({
+          username: req.session.username,
+        })) ?? null;
+      return res.render(MAIN_LAYOUT, {
+        books: null,
+        username: dataUser.username,
+      });
+    } catch (error) {
+      return res.render(MAIN_LAYOUT, { books: null, username: null });
+    }
+  }
   const data = refactorDataProp(items);
   try {
     const dataUser =
@@ -187,7 +200,6 @@ app.get("/:username/collection/:nameCollection", async (req, res) => {
     return res.status(204).end();
   }
   const items = await getItemsFromCollection(username, nameCollection);
-  // console.log({username, nameCollection, items});
   res.render("collections/main-collection.ejs", {
     username,
     nameCollection,

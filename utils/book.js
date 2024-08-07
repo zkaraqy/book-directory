@@ -56,20 +56,9 @@ async function getBook(id) {
 }
 
 function refactorDataProp(items) {
-  items = items.map((book) => {
-    const {
-      title,
-      subtitle,
-      authors,
-      publisher,
-      publishedDate,
-      pageCount,
-      imageLinks,
-      language,
-    } = book.volumeInfo;
-    return {
-      id: book.id,
-      volumeInfo: {
+  try {
+    items = items.map((book) => {
+      const {
         title,
         subtitle,
         authors,
@@ -78,11 +67,27 @@ function refactorDataProp(items) {
         pageCount,
         imageLinks,
         language,
-      },
-      progress: "Pending",
-    };
-  });
-  return items;
+      } = book.volumeInfo;
+      return {
+        id: book.id,
+        volumeInfo: {
+          title,
+          subtitle,
+          authors,
+          publisher,
+          publishedDate,
+          pageCount,
+          imageLinks,
+          language,
+        },
+        progress: "Pending",
+      };
+    });
+    return items;
+  } catch (error) {
+    console.log(items)
+    throw new Error(error);
+  }
 }
 
 async function updateProgressPersonalCollection(username, id, value) {

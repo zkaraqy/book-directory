@@ -21,7 +21,20 @@
     </div>
     <div class="w-full flex flex-col justify-center items-center text-dark-theme-secondary">
       <% if (error) { %>
-      <h3 class="text-red-600"><%= error %></h3>
+        <div role="alert" class="alert alert-error max-w-max mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span><%= error %></span>
+        </div>
       <% } %>
       <form id="loginForm" action="/auth/login.ejs" method="post" class="w-full flex flex-col justify-center items-center gap-3 text-lg">
         <div class="flex flex-col w-2/6 font-mono">
@@ -40,13 +53,3 @@
 </body>
 
 </html>
-<!-- <form action="/login" method="post">
-  <label for="emailUsername">Email or username : </label>
-  <input type="text" name="emailUsername" id="emailUsername" required />
-  <br />
-  <label for="password">password : </label>
-  <input type="password" name="password" id="password" required />
-  <br />
-  <button type="submit">Login</button>
-</form>
-<a href="./signUp.ejs">Back to create account?</a> -->
