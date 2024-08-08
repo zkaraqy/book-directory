@@ -55,6 +55,17 @@ async function getBook(id) {
   }
 }
 
+async function getFullBook(id) {
+  const URI = `https://www.googleapis.com/books/v1/volumes/${id}`;
+  try {
+    const response = await fetch(URI);
+    const bookData = await response.json();
+    return bookData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function refactorDataProp(items) {
   try {
     items = items.map((book) => {
@@ -85,7 +96,7 @@ function refactorDataProp(items) {
     });
     return items;
   } catch (error) {
-    console.log(items)
+    console.log(items);
     throw new Error(error);
   }
 }
@@ -148,6 +159,7 @@ async function getItemsFromCollection(username, nameCollection) {
 module.exports = {
   getBooks,
   getBook,
+  getFullBook,
   refactorDataProp,
   updateProgressPersonalCollection,
   updateProgressFavorites,

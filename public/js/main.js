@@ -23,12 +23,6 @@ async function postUser(userData) {
   });
   console.log("Posted user:", res);
 }
-// const {
-//   generateRandomId,
-//   createUserInSessionStorage,
-//   getUserFromSessionStorage,
-//   postUser,
-// } = require("./user.js");
 
 window.onload = async () => {
   const userData = getUserFromSessionStorage();
@@ -68,7 +62,7 @@ const bttnAddBookToPersonalCollection = document.getElementsByClassName(
 const bttnAddBookToFavorites = document.querySelectorAll(
   ".bttnAddBookToFavorites"
 );
-const bttnDetailBook = document.getElementById("bttnDetailBook");
+const bttnDetailBook = document.querySelectorAll(".bttnDetailBook");
 const toastBookError = document.getElementById("toastBookError");
 const pMessageError = document.getElementById("pMessageError");
 const toastBookSuccess = document.getElementById("toastBookSuccess");
@@ -126,6 +120,7 @@ bttnAddBookToFavorites.forEach(function (bttn) {
   });
 });
 
+
 const signUpForm = document.getElementById("signUpForm");
 
 if (signUpForm) {
@@ -147,3 +142,14 @@ if (loginForm) {
     await postUser({ username });
   });
 }
+
+const searchBttn = document.getElementById("searchBttn");
+const loadingBook = document.getElementById("loading-book");
+const booksContainer = document.getElementById("books-container");
+
+searchBttn.addEventListener("click", function () {
+  loadingBook.classList.replace("hidden", "inline");
+  booksContainer.addEventListener("load", function () {
+    loadingBook.classList.replace("inline", "hidden");
+  });
+});

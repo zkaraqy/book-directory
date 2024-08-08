@@ -37,15 +37,15 @@
         </div>
       <% } %>
       <form id="loginForm" action="/auth/login.ejs" method="post" class="w-full flex flex-col justify-center items-center gap-3 text-lg">
-        <div class="flex flex-col w-2/6 font-mono">
+        <div class="flex flex-col w-2/3 lg:w-2/6 font-mono">
           <label for="emailUsername">Email or username</label>
           <input type="text" name="emailUsername" id="emailUsername" class="w-full bg-transparent focus:outline-none text-dark-theme-on-background rounded-lg py-1 px-3 border-b-2 border-dark-theme-primary focus:border-b-2 focus:border-dark-theme-primary-variant valid:border-dark-theme-primary-variant transition ease-in-out duration-300" required />
         </div>
-        <div class="flex flex-col w-2/6 font-mono">
+        <div class="flex flex-col w-2/3 lg:w-2/6 font-mono">
           <label for="password">password</label>
           <input type="password" name="password" id="password" class="w-full bg-transparent focus:outline-none text-dark-theme-on-background rounded-lg py-1 px-3 border-b-2 border-dark-theme-primary focus:border-b-2 focus:border-dark-theme-primary-variant valid:border-dark-theme-primary-variant transition ease-in-out duration-300" required />
         </div>
-        <button type="submit" class="px-5 py-2 rounded-md border border-dark-theme-primary mt-3 hover:border-dark-theme-primary-variant hover:text-dark-theme-on-background hover:bg-dark-theme-primary-variant transition ease-in-out hover:shadow-md hover:shadow-dark-theme-secondary/30">Login</button>
+        <button type="submit" class="btn btn-outline btn-primary mt-3">Login</button>
       </form>
       <a href="./signUp.ejs" class="mt-3 underline-offset-2 hover:underline hover:text-dark-theme-on-background transition">Don't have any account?</a>
     </div>

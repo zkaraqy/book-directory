@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= book.volumeInfo.title %></title>
+  <link rel="stylesheet" href="/css/src/output.css" type="text/css" />
+</head>
+
+<body>
+  <div class="fixed w-screen top-0 z-10">
+    <%- include('../partials/nav.ejs') %>
+  </div>
+  <div class="pt-20 lg:pt-10 hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col md:flex-row">
+      <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="max-w-[50%] md:w-1/2 rounded-lg shadow-2xl" />
+      <div>
+        <h1 class="text-3xl lg:text-4xl font-bold"><%= book.volumeInfo.title %></h1>
+        <p class="pt-6 pb-3">
+          <%= book.volumeInfo.description %>
+        </p>
+        <div class="flex gap-2">
+            <% book.volumeInfo.categories[0].split(" / ").forEach(element => { %>
+            <div class="badge badge-accent h-auto"><%= element %></div>
+            <% }) %>
+          </div>
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-2" checked="checked" />
+          <div class="collapse-title text-xl font-medium">Authors</div>
+          <div class="collapse-content">
+            <% book.volumeInfo.authors.forEach(author => { %>
+            <p><%= author %></p>
+            <% }) %>
+          </div>
+        </div>
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-2" />
+          <div class="collapse-title text-xl font-medium">Book detail</div>
+          <div class="collapse-content">
+            <p>Publisher: <%= book.volumeInfo.publisher %></p>
+            <p>Published date: <%= book.volumeInfo.publishedDate %></p>
+            <% if (book.volumeInfo.industryIdentifiers) { %>
+                <p>Industry identifiers</p>
+                <ul class="list-disc pl-8">
+                  <% book.volumeInfo.industryIdentifiers.forEach(data=> { %>
+                  <li><%= data.type %>: <%= data.identifier %></li>
+                  <% }) %>
+                </ul>
+            <% } %>
+            <p>Page count: <%= book.volumeInfo.pageCount %></p>
+
+          </div>
+          
+        </div>
+        <button class="mt-2 btn btn-outline btn-primary"><a href="<%= book.accessInfo.webReaderLink %>" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> View on Google Play</a></button>
+      </div>
+    </div>
+  </div>
+  <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

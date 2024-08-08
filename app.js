@@ -18,9 +18,8 @@ const PORT = process.env.PORT || 5000;
 const {
   getBooks,
   getBook,
+  getFullBook,
   refactorDataProp,
-  updateProgressPersonalCollection,
-  updateProgressFavorites,
   getItemsFromCollection,
 } = require("./utils/book");
 
@@ -135,7 +134,7 @@ app.post("/auth/login.ejs", async (req, res) => {
     dataUser.username = user.username;
     console.log("User: " + emailUsername + " is valid user. Welcome");
   } else {
-    const error = "Email/Username or password is wrong";
+    const error = "Email or username or password is wrong";
     return res.status(406).render(AUTH_LOGIN_VIEWS, { error });
   }
   console.log(user);
@@ -179,10 +178,17 @@ app.get("/searchBooks", async (req, res) => {
   }
 });
 
-app.get("/getSingleBook/:id", async (req, res) => {
+app.get("/detail/:id", async (req, res) => {
   const { id } = req.params;
-  const book = await getBook(id);
-  return res.json(book).end();
+  const book = await getFullBook(id);
+  const dataUser =
+    (await getUserLoginCache({
+      username: req.session.username,
+    })) ?? null;
+  res.render("books/bookDetail.ejs", {
+    book,
+    username: dataUser ? dataUser.username : null,
+  });
 });
 
 app.get("/:username/collection/:nameCollection", async (req, res) => {
@@ -193,11 +199,11 @@ app.get("/:username/collection/:nameCollection", async (req, res) => {
     })) ?? null;
   if (!dataUser) {
     console.log("You have not sign-up or log-in yet");
-    return res.status(204).end();
+    return res.status(204).redirect("/");
   }
   if (dataUser.username !== username) {
     console.log("You dont have access to that");
-    return res.status(204).end();
+    return res.status(204).redirect("/");
   }
   const items = await getItemsFromCollection(username, nameCollection);
   res.render("collections/main-collection.ejs", {
@@ -269,60 +275,6 @@ app.get("/book/details/:id", async (req, res) => {
   const { id } = req.params;
   const book = await getBook(id);
   res.status(200).json(book).end();
-});
-
-app.put(
-  "/:username/personal%20collection/updateProgress/:id",
-  async (req, res) => {
-    const dataUser =
-      (await getUserLoginCache({
-        username: req.session.username,
-      })) ?? null;
-    if (!dataUser) {
-      console.log("You have not sign-up or log-in yet");
-
-      return res.status(204).end();
-    }
-    const { username, id } = req.params;
-    const { progress } = req.body;
-    if (dataUser.username !== username) {
-      console.log("You dont have access to that");
-      return res.status(204).end();
-    }
-    await updateProgressPersonalCollection(username, id, progress)
-      .then(() =>
-        console.log(
-          "Successfully update progress book in the personal collection"
-        )
-      )
-      .catch((err) => console.log(err));
-
-    res.status(204).end();
-  }
-);
-
-app.put("/:username/favorites/updateProgress/:id", async (req, res) => {
-  const dataUser =
-    (await getUserLoginCache({
-      username: req.session.username,
-    })) ?? null;
-  if (!dataUser) {
-    console.log("You have not sign-up or log-in yet");
-    return res.status(204).end();
-  }
-  const { username, id } = req.params;
-  const { progress } = req.body;
-  if (dataUser.username !== username) {
-    console.log("You dont have access to that");
-    return res.status(204).end();
-  }
-  await updateProgressFavorites(username, id, progress)
-    .then(() =>
-      console.log("Successfully update progress book in the favorites")
-    )
-    .catch((err) => console.log(err));
-
-  res.status(204).end();
 });
 
 app.delete(`/:username/:nameCollection/delete/:id`, async (req, res) => {

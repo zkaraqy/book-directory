@@ -17,14 +17,13 @@
       <h1 class="text-3xl sm:text-4xl font-bold mb-4">Find Your BOOKS <i class="fa-solid fa-book text-dark-theme-primary"></i> !</h1>
       <form action="/searchBooks" method="get" autocomplete="off" class="w-full flex flex-row justify-center items-center gap-3">
         <input type="text" name="q" id="searchBooksInput" class="bg-dark-theme-secondary text-md text-dark-theme-on-primary font-bold p-2 w-2/3 sm:w-2/5 rounded-full ring-1 ring-transparent focus:outline-none focus:ring-dark-theme-primary text-center" />
-        <button type="submit" class="flex justify-center items-center transition duration-150 ease-in-out rounded-full border border-slate-400 hover:border-dark-theme-primary hover:bg-dark-theme-primary hover:text-dark-theme-on-background p-2 font-bold"><i class="fa-solid fa-magnifying-glass text-center p-1 text-lg"></i></button>
+        <button id="searchBttn" type="submit" class="flex justify-center items-center transition duration-150 ease-in-out rounded-full border border-slate-400 hover:border-dark-theme-primary hover:bg-dark-theme-primary hover:text-dark-theme-on-background p-2 font-bold"><i class="fa-solid fa-magnifying-glass text-center p-1 text-lg"></i></button>
       </form>
     </header>
-    <section class="mt-8 flex justify-center bg-dark-theme-background">
+    <section class="mt-8 flex flex-col items-center justify-center bg-dark-theme-background">
       <%- include('../books/searchedBooks.ejs') %>
     </section>
   </main>
-  <p>v1.1</p>
   <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
   <script src="/js/main.js"></script>
 </body>
