@@ -14,17 +14,24 @@
   </div>
   <div class="pt-20 lg:pt-10 hero bg-base-200 min-h-screen">
     <div class="hero-content flex-col md:flex-row">
+      <% if (book.volumeInfo.imageLinks.thumbnail) { %>
       <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="max-w-[50%] md:w-1/2 rounded-lg shadow-2xl" />
+      <% } %>
       <div>
+        <% if (book.volumeInfo.title) { %>
         <h1 class="text-3xl lg:text-4xl font-bold"><%= book.volumeInfo.title %></h1>
+        <% } %>
+        <% if (book.volumeInfo.description) { %>
         <p class="pt-6 pb-3">
           <%= book.volumeInfo.description %>
         </p>
+        <% } %>
+        <% if (book.volumeInfo.categories) { %>
         <div class="flex gap-2">
-            <% book.volumeInfo.categories[0].split(" / ").forEach(element => { %>
-            <div class="badge badge-accent h-auto"><%= element %></div>
-            <% }) %>
-          </div>
+          <% book.volumeInfo.categories[0].split(" / ").forEach(element => { %>
+          <div class="badge badge-accent h-auto"><%= element %></div>
+          <% }) %>
+        </div>
         <div class="collapse collapse-arrow bg-base-200">
           <input type="radio" name="my-accordion-2" checked="checked" />
           <div class="collapse-title text-xl font-medium">Authors</div>
@@ -34,26 +41,33 @@
             <% }) %>
           </div>
         </div>
+        <% } %>
         <div class="collapse collapse-arrow bg-base-200">
           <input type="radio" name="my-accordion-2" />
           <div class="collapse-title text-xl font-medium">Book detail</div>
           <div class="collapse-content">
+            <% if (book.volumeInfo.publisher) { %>
             <p>Publisher: <%= book.volumeInfo.publisher %></p>
-            <p>Published date: <%= book.volumeInfo.publishedDate %></p>
-            <% if (book.volumeInfo.industryIdentifiers) { %>
-                <p>Industry identifiers</p>
-                <ul class="list-disc pl-8">
-                  <% book.volumeInfo.industryIdentifiers.forEach(data=> { %>
-                  <li><%= data.type %>: <%= data.identifier %></li>
-                  <% }) %>
-                </ul>
             <% } %>
+            <% if (book.volumeInfo.publishedDate) { %>
+            <p>Published date: <%= book.volumeInfo.publishedDate %></p>
+            <% } %>
+            <% if (book.volumeInfo.industryIdentifiers) { %>
+            <p>Industry identifiers</p>
+            <ul class="list-disc pl-8">
+              <% book.volumeInfo.industryIdentifiers.forEach(data=> { %>
+              <li><%= data.type %>: <%= data.identifier %></li>
+              <% }) %>
+            </ul>
+            <% } %>
+            <% if (book.volumeInfo.pageCount) { %>
             <p>Page count: <%= book.volumeInfo.pageCount %></p>
-
+            <% } %>
           </div>
-          
         </div>
+        <% if (book.accessInfo.webReaderLink) { %>
         <button class="mt-2 btn btn-outline btn-primary"><a href="<%= book.accessInfo.webReaderLink %>" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> View on Google Play</a></button>
+        <% } %>
       </div>
     </div>
   </div>

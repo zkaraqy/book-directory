@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found</title>
+  <link rel="stylesheet" href="/css/src/output.css" type="text/css">
+</head>
+
+<body>
+  <div class="fixed w-screen top-0 z-10">
+    <%- include('../partials/nav.ejs') %>
+  </div>
+  <div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">Oops! the page is not found</h1>
+        <p class="py-6">
+          You might be enter the wrong url. Please try again
+        </p>
+        <button class="btn btn-primary"><a href="/">Back to home</a></button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

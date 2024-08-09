@@ -12,7 +12,7 @@
         <form action="/detail/<%= book.id %>" method="get">
           <button type="submit" class="btn btn-outline btn-info">Detail</button>
         </form>
-        <form action="/<%= username %>/<%= nameCollection %>/delete/<%= book.id %>" method="post">
+        <form action="/collection/<%= username %>/<%= nameCollection %>/delete/<%= book.id %>" method="post">
           <input type="text" name="_method" value="DELETE" hidden>
           <button type="submit" class="btn btn-success">Done reading</button>
         </form>

@@ -8,10 +8,10 @@
     <p id="usernameProfile" class="font-mono"><%= username %></p>
     <i id="profileButton" class="fa-regular fa-user rounded-full border border-dark-theme-on-background/50 shadow-sm shadow-dark-theme-primary flex justify-center items-center gap-1 p-3 cursor-pointer hover:bg-dark-theme-primary/50 hover:text-slate-900 hover:border-slate-900 hover:shadow-slate-900  transition"></i>
     <div id="profileAction" class="hidden flex-col justify-center items-start absolute w-max p-3 text-dark-theme-background bg-white/70 bottom-[-270%] right-0 rounded gap-2">
-      <form action="/<%= username %>/collection/Favorites" method="get">
+      <form action="/collection/<%= username %>/Favorites" method="get">
         <button type="submit" class="hover:underline"><i class="fa-solid fa-star w-4 mr-1 text-yellow-300"></i>Favorites</button>
       </form>
-      <form action="/<%= username %>/collection/Personal collection" method="get">
+      <form action="/collection/<%= username %>/Personal collection" method="get">
         <button type="submit" class="hover:underline"><i class="fa-solid fa-bookmark w-[14px] ml-[2px] text-dark-theme-primary"></i> Personal Collection</button>
       </form>
       <form action="/logOut" method="get" class="text-center w-full">
