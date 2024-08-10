@@ -1,4 +1,6 @@
 const client = require("../config/database");
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(10);
 
 const PERSONAL_COLLECTIONS = "Personal collection";
 const FAVORITES = "Favorites";
@@ -41,12 +43,14 @@ async function getUserLoginCache({ username }) {
   }
 }
 
-async function addUser(data) {
+async function addUser({ email, username, password }) {
+  // console.log({ email, username, password });
   try {
+    const hash = bcrypt.hashSync(password, salt);
     await client
       .db("user")
       .collection("email-username-password")
-      .insertOne(data);
+      .insertOne({ email, username, password: hash });
     return true;
   } catch (error) {
     throw new Error(error);
@@ -57,8 +61,16 @@ async function getUser({ emailUsername, password }) {
   const tryEmail = await client
     .db("user")
     .collection("email-username-password")
-    .findOne({ email: emailUsername, password })
-    .then((val) => val)
+    .findOne({ email: emailUsername })
+    .then((val) => {
+      if (!val) {
+        return null;
+      }
+      const hash = val.password;
+      if (bcrypt.compareSync(password, hash)) {
+        return val;
+      }
+    })
     .catch((err) => console.log(err));
   if (tryEmail) {
     return tryEmail;
@@ -66,8 +78,16 @@ async function getUser({ emailUsername, password }) {
   const tryUsername = await client
     .db("user")
     .collection("email-username-password")
-    .findOne({ username: emailUsername, password })
-    .then((val) => val)
+    .findOne({ username: emailUsername })
+    .then((val) => {
+      if (!val) {
+        return null;
+      }
+      const hash = val.password;
+      if (bcrypt.compareSync(password, hash)) {
+        return val;
+      }
+    })
     .catch((err) => console.log(err));
   if (tryUsername) {
     return tryUsername;

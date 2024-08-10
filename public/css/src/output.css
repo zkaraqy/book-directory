@@ -1218,6 +1218,34 @@ html {
   }
 }
 
+.footer {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  place-items: start;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  row-gap: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.footer > * {
+  display: grid;
+  place-items: start;
+  gap: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+  .footer {
+    grid-auto-flow: column;
+  }
+
+  .footer-center {
+    grid-auto-flow: row dense;
+  }
+}
+
 .label {
   display: flex;
   -webkit-user-select: none;
@@ -1798,6 +1826,13 @@ details.collapse summary::-webkit-details-marker {
   content: "−";
 }
 
+.footer-title {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
 .input input {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
@@ -2132,6 +2167,10 @@ details.collapse summary::-webkit-details-marker {
   top: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -2183,6 +2222,14 @@ details.collapse summary::-webkit-details-marker {
   margin-top: 2rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -2211,12 +2258,108 @@ details.collapse summary::-webkit-details-marker {
   height: 100vh;
 }
 
+.h-\[50vh\] {
+  height: 50vh;
+}
+
+.h-full {
+  height: 100%;
+}
+
 .min-h-\[260px\] {
   min-height: 260px;
 }
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-11 {
+  min-height: 2.75rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.min-h-\[80vh\] {
+  min-height: 80vh;
+}
+
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
+.min-h-\[45vh\] {
+  min-height: 45vh;
+}
+
+.min-h-\[vh\] {
+  min-height: vh;
+}
+
+.min-h-\[48vh\] {
+  min-height: 48vh;
+}
+
+.min-h-\[49vh\] {
+  min-height: 49vh;
+}
+
+.min-h-\[48\.5vh\] {
+  min-height: 48.5vh;
+}
+
+.min-h-\[48\.7vh\] {
+  min-height: 48.7vh;
+}
+
+.min-h-\[70vh\] {
+  min-height: 70vh;
+}
+
+.min-h-\[90vh\] {
+  min-height: 90vh;
+}
+
+.min-h-\[85vh\] {
+  min-height: 85vh;
+}
+
+.min-h-\[89vh\] {
+  min-height: 89vh;
+}
+
+.min-h-\[88vh\] {
+  min-height: 88vh;
+}
+
+.min-h-\[88\.5vh\] {
+  min-height: 88.5vh;
+}
+
+.min-h-\[88\.7vh\] {
+  min-height: 88.7vh;
+}
+
+.min-h-\[88\.8vh\] {
+  min-height: 88.8vh;
+}
+
+.min-h-\[87vh\] {
+  min-height: 87vh;
+}
+
+.min-h-\[86vh\] {
+  min-height: 86vh;
+}
+
+.min-h-\[86\.5vh\] {
+  min-height: 86.5vh;
+}
+
+.min-h-\[86\.4vh\] {
+  min-height: 86.4vh;
 }
 
 .w-2\/3 {
@@ -2243,6 +2386,10 @@ details.collapse summary::-webkit-details-marker {
   width: 14px;
 }
 
+.w-\[250px\] {
+  width: 250px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -2256,6 +2403,14 @@ details.collapse summary::-webkit-details-marker {
   width: 100vw;
 }
 
+.w-2 {
+  width: 0.5rem;
+}
+
+.w-\[200px\] {
+  width: 200px;
+}
+
 .max-w-\[177px\] {
   max-width: 177px;
 }
@@ -2267,10 +2422,6 @@ details.collapse summary::-webkit-details-marker {
 .max-w-max {
   max-width: -moz-max-content;
   max-width: max-content;
-}
-
-.max-w-md {
-  max-width: 28rem;
 }
 
 .shrink-0 {
@@ -2303,6 +2454,10 @@ details.collapse summary::-webkit-details-marker {
   list-style-type: disc;
 }
 
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -2313,6 +2468,18 @@ details.collapse summary::-webkit-details-marker {
 
 .flex-col {
   flex-direction: column;
+}
+
+.place-content-center {
+  place-content: center;
+}
+
+.place-items-center {
+  place-items: center;
+}
+
+.content-center {
+  align-content: center;
 }
 
 .items-start {
@@ -2447,6 +2614,11 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(18 18 18 / var(--tw-bg-opacity));
 }
 
+.bg-neutral-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
+}
+
 .bg-slate-800\/50 {
   background-color: rgb(30 41 59 / 0.5);
 }
@@ -2459,49 +2631,18 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 255 255 / 0.7);
 }
 
-.bg-slate-500 {
+.bg-neutral {
   --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
 }
 
-.bg-slate-700 {
+.bg-slate-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
-.bg-slate-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-}
-
-.bg-slate-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-}
-
-.bg-stone-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(28 25 23 / var(--tw-bg-opacity));
-}
-
-.bg-gray-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
+.fill-current {
+  fill: currentColor;
 }
 
 .stroke-current {
@@ -2518,6 +2659,14 @@ details.collapse summary::-webkit-details-marker {
 
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .px-3 {
@@ -2558,6 +2707,10 @@ details.collapse summary::-webkit-details-marker {
   padding-left: 2rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
 .pt-20 {
   padding-top: 5rem;
 }
@@ -2568,6 +2721,18 @@ details.collapse summary::-webkit-details-marker {
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
 }
 
 .text-center {
@@ -2597,6 +2762,11 @@ details.collapse summary::-webkit-details-marker {
   line-height: 2.5rem;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -2615,11 +2785,6 @@ details.collapse summary::-webkit-details-marker {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .font-bold {
@@ -2695,6 +2860,11 @@ details.collapse summary::-webkit-details-marker {
 .text-yellow-300 {
   --tw-text-opacity: 1;
   color: rgb(253 224 71 / var(--tw-text-opacity));
+}
+
+.text-neutral-content {
+  --tw-text-opacity: 1;
+  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
 }
 
 .underline-offset-2 {
@@ -2856,6 +3026,11 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(15 23 42 / var(--tw-text-opacity));
 }
 
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2863,6 +3038,11 @@ details.collapse summary::-webkit-details-marker {
 .hover\:shadow-slate-900:hover {
   --tw-shadow-color: #0f172a;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.\*\:hover\:text-white:hover > * {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .focus\:border-b-2:focus {
@@ -2882,6 +3062,36 @@ details.collapse summary::-webkit-details-marker {
 .focus\:ring-dark-theme-primary:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(187 134 252 / var(--tw-ring-opacity));
+}
+
+@media (min-width: 450px) {
+  .min-\[450px\]\:mx-3 {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .min-\[450px\]\:flex-row {
+    flex-direction: row;
+  }
+
+  .min-\[450px\]\:flex-col {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 500px) {
+  .min-\[500px\]\:mx-3 {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .min-\[500px\]\:flex-row {
+    flex-direction: row;
+  }
+
+  .min-\[500px\]\:flex-col {
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 550px) {
@@ -2925,6 +3135,10 @@ details.collapse summary::-webkit-details-marker {
     width: 40%;
   }
 
+  .sm\:w-96 {
+    width: 24rem;
+  }
+
   .sm\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -2951,11 +3165,27 @@ details.collapse summary::-webkit-details-marker {
   .md\:place-content-stretch {
     place-content: stretch;
   }
+
+  .md\:place-self-center {
+    place-self: center;
+  }
+
+  .md\:justify-self-end {
+    justify-self: end;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:w-2\/6 {
     width: 33.333333%;
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:pt-0 {
+    padding-top: 0px;
   }
 
   .lg\:pt-10 {

@@ -2,8 +2,8 @@
 <div class="w-full mx-auto flex flex-col md:grid md:grid-cols-2 md:place-content-stretch text-white gap-3">
   <% books.forEach(book => { %>
   <div class="card card-side bg-base-100 shadow-xl">
-    <figure>
-      <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="w-[140px] h-auto" />
+    <figure class="p-2">
+      <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="w-[140px] h-auto rounded-md" />
     </figure>
     <div class="card-body">
       <h2 class="card-title text-wrap"><%= book.volumeInfo.title %></h2>

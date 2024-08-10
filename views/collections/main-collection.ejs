@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= nameCollection %></title>
   <link rel="stylesheet" href="/css/src/output.css" type="text/css">
+  <link rel="shortcut icon" href="/images/book.png" type="image/x-icon">
 </head>
 
 <body class="bg-dark-theme-surface min-h-screen">
   <div class="fixed top-0 w-screen">
     <%- include('../partials/nav.ejs') %>
   </div>
-  <main class="bg-dark-theme-surface container pt-20 text-white mx-auto">
+  <main class="bg-dark-theme-surface container pt-20 text-white mx-auto min-h-[86.4vh]">
     <div class="breadcrumbs text-center text-2xl font-mono mx-auto flex justify-center items-center">
       <ul>
         <li><%= username %></li>
@@ -40,6 +41,9 @@
       </section>
     <% } %>
   </main>
+  <div class="pt-4 w-full bg-dark-theme-background relative bottom-0">
+    <%- include('../partials/footer.ejs') %>
+  </div>
   <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
   <script src="/js/main.js"></script>
 </body>

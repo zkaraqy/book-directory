@@ -6,6 +6,7 @@ const {
   addUserLoginCache,
   getUserLoginCache,
 } = require("../utils/db");
+const validator = require('validator');
 
 const AUTH_SIGNUP_VIEWS = "auth/signUp.ejs";
 const AUTH_LOGIN_VIEWS = "auth/login.ejs";
@@ -20,6 +21,18 @@ const renderLoginView = (req, res) => {
 
 const signUp = async (req, res) => {
   const { email, username, password } = req.body;
+  if (!validator.isEmail(email)) {
+    const error = "Please enter a valid email";
+    return res.status(406).render(AUTH_SIGNUP_VIEWS, { error });
+  }
+  if (/^\d/.test(username)) {
+    const error = "Username must not start with number";
+    return res.status(406).render(AUTH_SIGNUP_VIEWS, { error });
+  }
+  // if (!validator.isStrongPassword(password)) {
+  //   const error = "Please enter a strong password";
+  //   return res.status(406).render(AUTH_SIGNUP_VIEWS, { error });
+  // }
   const checkEmail = await checkUser({ emailUsername: email });
   if (checkEmail) {
     const error = "Email already used by someone";

@@ -6,15 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page not found</title>
   <link rel="stylesheet" href="/css/src/output.css" type="text/css">
+  <link rel="shortcut icon" href="/images/404.ico" type="image/x-icon">
 </head>
 
 <body>
   <div class="fixed w-screen top-0 z-10">
     <%- include('../partials/nav.ejs') %>
   </div>
-  <div class="hero bg-base-200 min-h-screen">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
+  <div class="pt-10 lg:pt-0 hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row">
+      <img
+        src="/images/error404.png"
+        class="w-[250px] sm:w-96 rounded-lg" />
+      <div>
         <h1 class="text-5xl font-bold">Oops! the page is not found</h1>
         <p class="py-6">
           You might be enter the wrong url. Please try again
@@ -23,6 +27,9 @@
       </div>
     </div>
   </div>
+  <%- include('../partials/footer.ejs') %>
+  <script src="https://kit.fontawesome.com/d918759405.js" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
