@@ -9,9 +9,24 @@ module.exports = {
           "10%": { bottom: "16px" },
           "90%": { bottom: "16px" },
         },
+        "slide-in-blurred-bottom": {
+          "0%": {
+            "transform": "translateY(1000px) scaleY(2.5) scaleX(0.2)",
+            "transform-origin": "50% 100%",
+            "filter": "blur(40px) grayscale(1)",
+            "opacity": "0",
+          },
+          "100%": {
+            "transform": "translateY(0) scaleY(1) scaleX(1)",
+            "transform-origin": "50% 50%",
+            "filter": "blur(0) grayscale(0)",
+            "opacity": "1",
+          },
+        },
       },
       animation: {
         shows: "shows 5s ease-in-out 1",
+        "slide-in": "slide-in-blurred-bottom 0.6s ease-out 1 normal both"
       },
       fontFamily: {
         arial: ["Arial", "sans-serif"],
