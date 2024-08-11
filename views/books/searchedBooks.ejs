@@ -43,14 +43,31 @@
   </div>
   <% }) %>
   <% } %>
-  <div id="toastBookError" class="fixed -bottom-full left-4 px-5 py-4 text-dark-theme-surface transition shadow-md bg-dark-theme-error/70 shadow-dark-theme-error backdrop-blur-md rounded-md flex gap-2 items-center">
-    <i class="fa-solid fa-circle-exclamation"></i>
-    <p id="pMessageError" class="font-semibold"></p>
+  <div id="toastContainer" class="toast toast-start">
+    <div id="toastBookSuccess" class="hidden alert alert-success bg-dark-theme-primary/60 backdrop-blur-md text-white">
+      <i class="fa-regular fa-circle-check"></i>
+      <span id="pMessageSuccess"></span>
+    </div>
+    <div id="toastBookError" class="hidden alert alert-error bg-dark-theme-error/70 backdrop-blur-md">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="pMessageError"></span>
+    </div>
   </div>
-  <div id="toastBookSuccess" class="fixed -bottom-full left-4 px-5 py-4 text-dark-theme-on-background transition shadow-md bg-dark-theme-primary/60 backdrop-blur-md shadow-dark-theme-primary rounded-md flex gap-2 items-center">
-    <i class="fa-regular fa-circle-check"></i>
-    <p id="pMessageSuccess" class="font-semibold"></p>
-  </div>
-  <div class="absolute animate-shows bottom-4"></div>
-  <div class="absolute animate-shows -bottom-full"></div>
+  <div class="absolute animate-shows"></div>
+  <div class="absolute animate-shows"></div>
 </div>
+<% if (books.length > 0) { %>
+<div class="join mt-5">
+  <form action="/searchBooks" method="get" autocomplete="off" class="w-full flex flex-row justify-center items-center gap-3">
+    <input type="text" name="startIndex" id="startIndex" hidden value="<%= startIndex - 40 %>">
+    <input type="text" name="q" id="searchBooksInput" hidden value="<%= q %>" />
+    <button id="previousBttn" class="join-item btn" <%= pageNumber <= 1 ? "disabled" : "" %>>«</button>
+  </form>
+  <button class="join-item btn">Page <%= pageNumber %></button>
+  <form action="/searchBooks" method="get" autocomplete="off" class="w-full flex flex-row justify-center items-center gap-3">
+    <input type="text" name="startIndex" id="startIndex" hidden value="<%= 40 * pageNumber %>">
+    <input type="text" name="q" id="searchBooksInput" hidden value="<%= q %>" />
+    <button id="nextBttn" class="join-item btn" <%= !hasNext ? "disabled" : "" %>>»</button>
+  </form>
+</div>
+<% } %>

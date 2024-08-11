@@ -1,11 +1,11 @@
-const { getBooks, refactorDataProp } = require("../utils/book");
+const { getBooks, checkNextBooks, refactorDataProp } = require("../utils/book");
 const { getUserLoginCache } = require("../utils/db");
 
 const MAIN_LAYOUT = "layouts/main.ejs";
 
 const renderSearchedBooks = async (req, res) => {
-  const { q } = req.query;
-  const { items } = await getBooks(q, 0, 40);
+  const { q, startIndex } = req.query;
+  const { items } = await getBooks(q, startIndex, 40);
   if (!items) {
     try {
       const dataUser =
@@ -13,11 +13,11 @@ const renderSearchedBooks = async (req, res) => {
           username: req.session.username,
         })) ?? null;
       return res.render(MAIN_LAYOUT, {
-        books: null,
+        books: [],
         username: dataUser.username,
       });
     } catch (error) {
-      return res.render(MAIN_LAYOUT, { books: null, username: null });
+      return res.render(MAIN_LAYOUT, { books: [], username: null });
     }
   }
   const data = refactorDataProp(items);
@@ -26,9 +26,23 @@ const renderSearchedBooks = async (req, res) => {
       (await getUserLoginCache({
         username: req.session.username,
       })) ?? null;
-    res.render(MAIN_LAYOUT, { books: data, username: dataUser.username });
+    res.render(MAIN_LAYOUT, {
+      books: data,
+      username: dataUser.username,
+      startIndex,
+      q,
+      pageNumber: parseInt(parseInt(startIndex) / 40 + 1),
+      hasNext: await checkNextBooks(q, parseInt(startIndex) + 40, 40),
+    });
   } catch (error) {
-    res.render(MAIN_LAYOUT, { books: data, username: null });
+    res.render(MAIN_LAYOUT, {
+      books: data,
+      username: null,
+      startIndex,
+      q,
+      pageNumber: parseInt(parseInt(startIndex) / 40 + 1),
+      hasNext: await checkNextBooks(q, parseInt(startIndex) + 40, 40),
+    });
   }
 };
 

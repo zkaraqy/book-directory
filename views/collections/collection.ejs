@@ -1,7 +1,7 @@
 <h1 class="text-center mb-4">Total books: <%= books.length %></h1>
 <div class="w-full mx-auto flex flex-col md:grid md:grid-cols-2 md:place-content-stretch text-white gap-3">
   <% books.forEach(book => { %>
-  <div class="animate-slide-in card card-side bg-base-100 shadow-xl">
+  <div class="card card-side bg-base-100 shadow-xl">
     <figure class="p-2">
       <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" class="w-[140px] h-auto rounded-md" />
     </figure>

@@ -55,6 +55,23 @@ async function getBook(id) {
   }
 }
 
+async function checkNextBooks(q, startIndex, maxResults) {
+  const URI = `https://www.googleapis.com/books/v1/volumes?q=${q}&startIndex=${startIndex}&maxResults=${maxResults}`;
+  try {
+    const response = await fetch(URI).then((val) => val);
+    const data = await response.json();
+    const { items } = data;
+    if (items) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 async function getFullBook(id) {
   const URI = `https://www.googleapis.com/books/v1/volumes/${id}`;
   try {
@@ -159,6 +176,7 @@ async function getItemsFromCollection(username, nameCollection) {
 module.exports = {
   getBooks,
   getBook,
+  checkNextBooks,
   getFullBook,
   refactorDataProp,
   updateProgressPersonalCollection,
