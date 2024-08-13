@@ -37,9 +37,11 @@
           <input type="radio" name="my-accordion-2" checked="checked" />
           <div class="collapse-title text-xl font-medium">Authors</div>
           <div class="collapse-content">
-            <% book.volumeInfo.authors.forEach(author => { %>
-            <p><%= author %></p>
-            <% }) %>
+            <% if (book.volumeInfo.authors) { %>
+              <% book.volumeInfo.authors.forEach(author => { %>
+              <p><%= author %></p>
+              <% }) %>
+            <% } %>
           </div>
         </div>
         <% } %>
