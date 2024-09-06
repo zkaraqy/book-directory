@@ -5,7 +5,7 @@
 Book Directory is a simple web application that allows users to search for and manage books in a personal collection. The application integrates with the Google Books API to fetch book information and provides user authentication, allowing users to sign up, log in, and manage their book collections.
 
 ## Preview URL
-<a href="https://books-directory.up.railway.app/" target="_blank">Click Me!</a>
+<a href="https://books-directory.up.railway.app/" target="_blank">Click Me!</a> (Non-active)
 
 ## Features
 - **Search Books**: Search for books using the Google Books API.
