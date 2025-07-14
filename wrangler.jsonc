@@ -2,7 +2,7 @@
   "name": "book-directory",
   "main": "app.js",
   "assets": {
-    "directory": "./dist"
+    "directory": "./public"
   },
   "compatibility_flags": ["nodejs_compat"],
   "compatibility_date": "2024-09-23"
