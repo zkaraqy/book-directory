@@ -1,6 +1,7 @@
 name = "book-directory"
 main = "app.js"
-compatibility_date = "2025-07-14"
+compatibility_flags = [ "nodejs_compat" ]
+compatibility_date = "2024-09-23"
 
 [vars]
 DB_URI = "mongodb+srv://azka:QwQ1JM5hiYbUEHdZ@cluster0.4cs5onl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
